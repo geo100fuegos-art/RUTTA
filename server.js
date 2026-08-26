@@ -263,7 +263,7 @@ app.get("/api/me", auth, async (req, res) => {
   }
 });
 
-app.get("/*splat", (req, res) => {
+app.get("/{*splat}", (req, res) => {
   const indexPath = path.join(__dirname, "public", "index.html");
 
   if (fs.existsSync(indexPath)) {
