@@ -136,7 +136,7 @@ app.post("/api/auth/register", async (req, res) => {
 
     const allowedRoles = ["CLIENTE", "PROFESIONAL"];
 
-    if (!allowedRoles.includes(role)) {
+   if (!allowedRoles.includes(role)) {
       return res.status(400).json({
         error: "Rol inválido.",
       });
