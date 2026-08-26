@@ -124,7 +124,7 @@ app.post("/api/auth/register", async (req, res) => {
 
     if (!name || !email || !password) {
       return res.status(400).json({
-        error: "Nombre, correo y contraseña son obligatorios.",
+        error: "Nombre, email y contraseña son obligatorios.",
       });
     }
 
@@ -236,7 +236,7 @@ app.get("/api/me", auth, async (req, res) => {
   try {
     const result = await pool.query(
       `
-      SELECT id, nombre, correo_electronico, rol, telefono, creado_en
+      SELECT id, nombre, email, rol, telefono, creado_en
       FROM usuarios
       WHERE id = $1
       LIMIT 1
