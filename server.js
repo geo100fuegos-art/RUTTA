@@ -267,7 +267,7 @@ app.get("*", (req, res) => {
   const indexPath = path.join(__dirname, "public", "index.html");
 
   if (fs.existsSync(indexPath)) {
-    return res.sendFile(indexPath);
+   aplicacion.conseguir("/*splat", (requisito, res) => {
   }
 
   res.json({
