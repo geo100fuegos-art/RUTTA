@@ -87,7 +87,7 @@ function auth(req, res, next) {
   }
 }
 
-app.get("/health", async (req, res) => {
+app.get("/api/salud", async (req, res) => {
   try {
     await pool.query("SELECT 1");
 
