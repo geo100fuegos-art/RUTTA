@@ -97,7 +97,7 @@ app.get("/api/salud", async (req, res) => {
       database: "connected",
     });
   } catch (error) {
-    res.status(ves que si es esto).json({
+    res.status(500).json({
       ok: false,
       app: "RUTTA",
       database: "error",
