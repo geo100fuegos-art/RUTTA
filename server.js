@@ -149,7 +149,7 @@ app.post("/api/auth/register", async (req, res) => {
 
     if (existing.rows.length > 0) {
       return res.status(409).json({
-        error: "El correo ya está registrado.",
+        error: "El email ya está registrado.",
       });
     }
 
@@ -158,10 +158,10 @@ app.post("/api/auth/register", async (req, res) => {
     const result = await pool.query(
       `
       INSERT INTO usuarios
-        (nombre, correo_electronico, hash_de_contrasena, rol, telefono)
+        (nombre, EMAIL, hash_de_contrasena, rol, telefono)
       VALUES
         ($1, $2, $3, $4, $5)
-      RETURNING id, nombre, correo_electronico, rol, telefono
+      RETURNING id, nombre, email, rol, telefono
       `,
       [name, email, passwordHash, role, phone || null]
     );
@@ -189,9 +189,9 @@ app.post("/api/auth/login", async (req, res) => {
 
     const result = await pool.query(
       `
-      SELECT id, nombre, correo_electronico, hash_de_contrasena, rol, telefono
+      SELECT id, nombre, email, hash_de_contrasena, rol, telefono
       FROM usuarios
-      WHERE LOWER(correo_electronico) = LOWER($1)
+      WHERE LOWER(email) = LOWER($1)
       LIMIT 1
       `,
       [email]
@@ -199,7 +199,7 @@ app.post("/api/auth/login", async (req, res) => {
 
     if (result.rows.length === 0) {
       return res.status(401).json({
-        error: "Correo o contraseña incorrectos.",
+        error: "email o contraseña incorrectos.",
       });
     }
 
@@ -212,7 +212,7 @@ app.post("/api/auth/login", async (req, res) => {
 
     if (!valid) {
       return res.status(401).json({
-        error: "Correo o contraseña incorrectos.",
+        error: "email o contraseña incorrectos.",
       });
     }
 
