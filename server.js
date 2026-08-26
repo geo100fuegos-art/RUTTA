@@ -143,7 +143,7 @@ app.post("/api/auth/register", async (req, res) => {
     }
 
     const existing = await pool.query(
-      "SELECT id FROM usuarios WHERE LOWER(correo_electronico) = LOWER($1) LIMIT 1",
+      "SELECT id FROM usuarios WHERE LOWER(email) = LOWER($1) LIMIT 1",
       [email]
     );
 
